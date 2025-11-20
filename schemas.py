@@ -1,48 +1,47 @@
 """
-Database Schemas
+Database Schemas for Campus Companion MVP
 
-Define your MongoDB collection schemas here using Pydantic models.
-These schemas are used for data validation in your application.
-
-Each Pydantic model represents a collection in your database.
-Model name is converted to lowercase for the collection name:
-- User -> "user" collection
-- Product -> "product" collection
-- BlogPost -> "blogs" collection
+Collections are derived from class names in lowercase.
 """
-
 from pydantic import BaseModel, Field
-from typing import Optional
+from typing import Optional, List
+from datetime import datetime
 
-# Example schemas (replace with your own):
+class Course(BaseModel):
+    code: str = Field(..., description="Course code, e.g., CS101")
+    name: str = Field(..., description="Course name")
+    semester: Optional[str] = Field(None, description="e.g., Fall 2025")
+    instructor: Optional[str] = None
+    location: Optional[str] = None
+    color: Optional[str] = Field(None, description="Hex color for UI")
 
-class User(BaseModel):
-    """
-    Users collection schema
-    Collection name: "user" (lowercase of class name)
-    """
-    name: str = Field(..., description="Full name")
-    email: str = Field(..., description="Email address")
-    address: str = Field(..., description="Address")
-    age: Optional[int] = Field(None, ge=0, le=120, description="Age in years")
-    is_active: bool = Field(True, description="Whether user is active")
+class Classsession(BaseModel):
+    course_id: str = Field(..., description="Reference to course document _id as string")
+    weekday: int = Field(..., ge=0, le=6, description="0=Mon .. 6=Sun")
+    start_time: str = Field(..., description="HH:MM 24h")
+    end_time: str = Field(..., description="HH:MM 24h")
+    location: Optional[str] = None
 
-class Product(BaseModel):
-    """
-    Products collection schema
-    Collection name: "product" (lowercase of class name)
-    """
-    title: str = Field(..., description="Product title")
-    description: Optional[str] = Field(None, description="Product description")
-    price: float = Field(..., ge=0, description="Price in dollars")
-    category: str = Field(..., description="Product category")
-    in_stock: bool = Field(True, description="Whether product is in stock")
+class Subtask(BaseModel):
+    title: str
+    done: bool = False
 
-# Add your own schemas here:
-# --------------------------------------------------
+class Assignment(BaseModel):
+    course_id: Optional[str] = Field(None, description="Reference to course doc _id as string")
+    title: str
+    description: Optional[str] = None
+    due_date: Optional[datetime] = None
+    priority: Optional[str] = Field("medium", description="low|medium|high")
+    subtasks: List[Subtask] = []
+    completed: bool = False
 
-# Note: The Flames database viewer will automatically:
-# 1. Read these schemas from GET /schema endpoint
-# 2. Use them for document validation when creating/editing
-# 3. Handle all database operations (CRUD) directly
-# 4. You don't need to create any database endpoints!
+class Note(BaseModel):
+    title: str
+    content: str = Field("", description="Markdown content")
+    subject: Optional[str] = None
+    tags: List[str] = []
+
+class Focussession(BaseModel):
+    started_at: datetime
+    duration_minutes: int = Field(..., ge=1)
+    type: str = Field("work", description="work|break")

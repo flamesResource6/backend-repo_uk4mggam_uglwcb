@@ -1,7 +1,31 @@
 INFO:     Will watch for changes in these directories: ['/home/workspace']
 INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
-INFO:     Started reloader process [116] using StatReload
-INFO:     Started server process [118]
+INFO:     Started reloader process [193] using StatReload
+INFO:     Started server process [195]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
-INFO:     172.20.0.1:40810 - "HEAD / HTTP/1.1" 405 Method Not Allowed
+INFO:     172.20.0.1:40352 - "HEAD / HTTP/1.1" 405 Method Not Allowed
+INFO:     172.20.0.1:40358 - "OPTIONS /api/notes HTTP/1.1" 200 OK
+INFO:     172.20.0.1:40360 - "OPTIONS /api/assignments?completed=false HTTP/1.1" 200 OK
+INFO:     172.20.0.1:40370 - "OPTIONS /api/classsessions HTTP/1.1" 200 OK
+INFO:     172.20.0.1:40378 - "OPTIONS /api/notes HTTP/1.1" 200 OK
+INFO:     172.20.0.1:40382 - "OPTIONS /api/courses HTTP/1.1" 200 OK
+INFO:     172.20.0.1:40396 - "OPTIONS /api/classsessions HTTP/1.1" 200 OK
+INFO:     172.20.0.1:40360 - "OPTIONS /api/assignments?completed=false HTTP/1.1" 200 OK
+INFO:     172.20.0.1:40370 - "OPTIONS /api/courses HTTP/1.1" 200 OK
+INFO:     172.20.0.1:40382 - "GET /api/assignments?completed=false HTTP/1.1" 200 OK
+INFO:     172.20.0.1:40378 - "GET /api/notes HTTP/1.1" 200 OK
+INFO:     172.20.0.1:37114 - "GET /api/assignments?completed=false HTTP/1.1" 200 OK
+INFO:     172.20.0.1:40382 - "GET /api/notes HTTP/1.1" 200 OK
+INFO:     172.20.0.1:40396 - "GET /api/classsessions HTTP/1.1" 200 OK
+INFO:     172.20.0.1:40370 - "GET /api/courses HTTP/1.1" 200 OK
+INFO:     172.20.0.1:40382 - "GET /api/classsessions HTTP/1.1" 200 OK
+INFO:     172.20.0.1:40396 - "GET /api/courses HTTP/1.1" 200 OK
+INFO:     172.20.0.1:42350 - "GET /api/assignments?completed=false HTTP/1.1" 200 OK
+INFO:     172.20.0.1:42362 - "GET /api/notes HTTP/1.1" 200 OK
+INFO:     172.20.0.1:42378 - "GET /api/courses HTTP/1.1" 200 OK
+INFO:     172.20.0.1:42386 - "GET /api/classsessions HTTP/1.1" 200 OK
+INFO:     172.20.0.1:42350 - "GET /api/assignments?completed=false HTTP/1.1" 200 OK
+INFO:     172.20.0.1:42362 - "GET /api/notes HTTP/1.1" 200 OK
+INFO:     172.20.0.1:42378 - "GET /api/courses HTTP/1.1" 200 OK
+INFO:     172.20.0.1:42386 - "GET /api/classsessions HTTP/1.1" 200 OK
